@@ -1,4 +1,3 @@
-import SignOutButton from "@/components/SignOutButton";
 import { getUserSession } from "@/lib/authCheck";
 
 export default async function Home() {
@@ -6,7 +5,6 @@ export default async function Home() {
   return (
     <>
       <div>
-        <SignOutButton />
         <pre>{JSON.stringify(session, null, 2)}</pre>
       </div>
     </>

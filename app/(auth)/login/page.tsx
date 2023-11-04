@@ -60,12 +60,26 @@ export default function Login() {
     }
   }
 
+  async function signInWithKakao() {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: "kakao",
+        options: {
+          redirectTo: `${location.origin}/auth/signInCallback`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function onSubmit(data: z.infer<typeof formSchema>) {}
   return (
     <div className='flex justify-center items-center w-full h-screen'>
       <div className='max-w-xs m-auto'>
         <h1 className='font-bold text-3xl'>로그인</h1>
         <button onClick={() => signInWithGoogle()}>구글로그인</button>
+        <button onClick={() => signInWithKakao()}>카카오로그인</button>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
             <div>
